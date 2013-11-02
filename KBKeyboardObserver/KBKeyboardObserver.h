@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Killer Ball. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @class KBKeyboardObserver;
 
 @protocol KBKeyboardObserverDelegate <NSObject>
