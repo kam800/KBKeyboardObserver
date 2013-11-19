@@ -7,7 +7,10 @@ Feel free to give suggestions!
 
 ## Installation
 
-Copy the __KBKeyboardObserver/KBKeyboardObserver.h__ and __KBKeyboardObserver/KBKeyboardObserver.m__ in your project.
+To install KBKeyboardObserver either:
+
+* use [http://cocoapods.org/](http://cocoapods.org/)
+* or copy __KBKeyboardObserver/KBKeyboardObserver.h__ and __KBKeyboardObserver/KBKeyboardObserver.m__ in your project.
 
 ## Usage
 
@@ -21,12 +24,12 @@ or use convenient UIViewController method instead:
 self.observer = [self registerForKeyboardNotifications:self];
 ```
 
-Implement delegate methods to observe keyboard behaviour:
+Implement delegate methods to observe keyboard behaviour (willShow, didShow, willHide and didHide):
 ``` objc
-- (void)keyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
-- (void)keyboardDidHideToRect:(CGRect)keyboardRect;
-- (void)keyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
-- (void)keyboardDidShowToRect:(CGRect)keyboardRect;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidHideToRect:(CGRect)keyboardRect;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidShowToRect:(CGRect)keyboardRect;
 ```
 
 ## Examples
@@ -72,7 +75,7 @@ KBKeyboardObserver helps to set contentIndents of UIScrollView.
 
 #pragma mark - KBKeyboardObserverDelegate
 
-- (void)keyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     // 2 - set content insets animation prior to the keyboard display
     UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, 0, keyboardRect.size.height, 0);
@@ -83,7 +86,7 @@ KBKeyboardObserver helps to set contentIndents of UIScrollView.
                      }];
 }
 
-- (void)keyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     // 3 - set content insets animation after the keyboard dismissal
     [UIView animateWithDuration:duration
@@ -133,7 +136,7 @@ KBKeyboardObserver helps to layout children of UIView.
 
 #pragma mark - KBKeyboardObserverDelegate
 
-- (void)keyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     [UIView animateWithDuration:duration
                      animations:^{
@@ -143,7 +146,7 @@ KBKeyboardObserver helps to layout children of UIView.
                      }];
 }
 
-- (void)keyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     [UIView animateWithDuration:duration
                      animations:^{
