@@ -17,32 +17,36 @@
 /**
  Called by the KBKeyboardObserver prior to the display of the keyboard.
  
+ @param keyboardObserver observer instance
  @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
  @param duration duration of the animation in seconds
  */
-- (void)keyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
 
 /**
  Called by the KBKeyboardObserver after the display of the keyboard.
  
+ @param keyboardObserver observer instance
  @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
  */
-- (void)keyboardDidHideToRect:(CGRect)keyboardRect;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidHideToRect:(CGRect)keyboardRect;
 
 /**
  Called by the KBKeyboardObserver prior to the dismissal of the keyboard.
  
+ @param keyboardObserver observer instance
  @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
  @param duration duration of the animation in seconds
  */
-- (void)keyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
 
 /**
  Called by the KBKeyboardObserver after the dismissal of the keyboard.
  
+ @param keyboardObserver observer instance
  @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
  */
-- (void)keyboardDidShowToRect:(CGRect)keyboardRect;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidShowToRect:(CGRect)keyboardRect;
 
 @end
 

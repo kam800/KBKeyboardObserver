@@ -58,7 +58,7 @@
 
 #pragma mark - KBKeyboardObserverDelegate
 
-- (void)keyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     [self updateStatus:[NSString stringWithFormat:@"Will show to %@ in %f", NSStringFromCGRect(keyboardRect), duration]];
     [UIView animateWithDuration:duration
@@ -70,12 +70,12 @@
                      completion:nil];
 }
 
-- (void)keyboardDidShowToRect:(CGRect)keyboardRect
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidShowToRect:(CGRect)keyboardRect
 {
     [self updateStatus:[NSString stringWithFormat:@"Did show to %@", NSStringFromCGRect(keyboardRect)]];
 }
 
-- (void)keyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillHideToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     [self updateStatus:[NSString stringWithFormat:@"Will hide to %@ in %f", NSStringFromCGRect(keyboardRect), duration]];
     [UIView animateWithDuration:duration
@@ -87,7 +87,7 @@
                      completion:nil];
 }
 
-- (void)keyboardDidHideToRect:(CGRect)keyboardRect
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidHideToRect:(CGRect)keyboardRect
 {
     [self updateStatus:[NSString stringWithFormat:@"Did hide to %@", NSStringFromCGRect(keyboardRect)]];
 }

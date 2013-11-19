@@ -54,13 +54,14 @@
 
 - (void)keyboardWillShow:(NSNotification*)aNotification
 {
-    if ([self.delegate respondsToSelector:@selector(keyboardWillShowToRect:duration:)]) {
+    if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardWillShowToRect:duration:)]) {
         NSDictionary *info = aNotification.userInfo;
         CGRect kbRectEnd = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGRect viewKbRectEnd = [self.referenceView convertRect:kbRectEnd fromView:nil];
         NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue] ;
-        [self.delegate keyboardWillShowToRect:viewKbRectEnd
-                                     duration:duration];
+        [self.delegate keyboardObserver:self
+         observedKeyboardWillShowToRect:viewKbRectEnd
+                               duration:duration];
     }
 }
 
@@ -71,20 +72,22 @@
     CGRect kbRectEnd = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.previousKeyboardBounds = [self.referenceView convertRect:kbRectBegin fromView:nil];
     self.currentKeyboardBounds = [self.referenceView convertRect:kbRectEnd fromView:nil];
-    if ([self.delegate respondsToSelector:@selector(keyboardDidShowToRect:)]) {
-        [self.delegate keyboardDidShowToRect:self.currentKeyboardBounds];
+    if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardDidShowToRect:)]) {
+        [self.delegate keyboardObserver:self
+          observedKeyboardDidShowToRect:self.currentKeyboardBounds];
     }
 }
 
 - (void)keyboardWillHide:(NSNotification*)aNotification
 {
-    if ([self.delegate respondsToSelector:@selector(keyboardWillHideToRect:duration:)]) {
+    if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardWillHideToRect:duration:)]) {
         NSDictionary *info = aNotification.userInfo;
         CGRect kbRectEnd = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGRect viewKbRectEnd = [self.referenceView convertRect:kbRectEnd fromView:nil];
         NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue] ;
-        [self.delegate keyboardWillHideToRect:viewKbRectEnd
-                                     duration:duration];
+        [self.delegate keyboardObserver:self
+         observedKeyboardWillHideToRect:viewKbRectEnd
+                               duration:duration];
     }
 }
 
@@ -95,8 +98,9 @@
     CGRect kbRectEnd = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     self.previousKeyboardBounds = [self.referenceView convertRect:kbRectBegin fromView:nil];
     self.currentKeyboardBounds = [self.referenceView convertRect:kbRectEnd fromView:nil];
-    if ([self.delegate respondsToSelector:@selector(keyboardDidHideToRect:)]) {
-        [self.delegate keyboardDidHideToRect:self.currentKeyboardBounds];
+    if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardDidHideToRect:)]) {
+        [self.delegate keyboardObserver:self
+          observedKeyboardDidHideToRect:self.currentKeyboardBounds];
     }
 }
 
