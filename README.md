@@ -10,6 +10,11 @@ Feel free to give suggestions!
 To install KBKeyboardObserver either:
 
 * use [http://cocoapods.org/](http://cocoapods.org/)
+
+```
+pod 'KBKeyboardObserver', '~> 0.0.2'
+```
+
 * or copy __KBKeyboardObserver/KBKeyboardObserver.h__ and __KBKeyboardObserver/KBKeyboardObserver.m__ in your project.
 
 ## Usage
