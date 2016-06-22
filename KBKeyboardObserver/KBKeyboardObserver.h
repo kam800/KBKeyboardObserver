@@ -48,6 +48,22 @@
  */
 - (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidShowToRect:(CGRect)keyboardRect;
 
+
+/**
+ Called by the KBKeyboardObserver after the dismissal of the keyboard.
+ 
+ @param keyboardObserver observer instance
+ @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
+ */
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+
+/**
+ Called by the KBKeyboardObserver after the dismissal of the keyboard.
+ 
+ @param keyboardObserver observer instance
+ @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
+ */
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidChangeFrameToRect:(CGRect)keyboardRect;
 @end
 
 @interface KBKeyboardObserver : NSObject
@@ -62,12 +78,20 @@
 - (id)initWithReferenceView:(UIView *)referenceView;
 
 /**
+ Returns keyboard type. Initially set to NO, so could result in false negative if the observer was initialized during keyboard changeFrame.
+ 
+ @return returns keyboard type
+ */
+@property (nonatomic, readonly, getter = isStandardKeyboard) BOOL standardKeyboard;
+
+/**
  Returns keyboard visibility. Initially set to NO, so could result in false negative if the observer was initialized during keyboard visibility.
  
  @return returns keyboard visibility
  */
-@property (nonatomic, readonly, getter = isKeyboardVisible) BOOL keyboardVisible;
 
+
+@property (nonatomic, readonly, getter = isKeyboardVisible) BOOL keyboardVisible;
 /**
  Returns keyboard state prior to the last completed keyboard show/hide. Initially set to CGRectZero.
  
