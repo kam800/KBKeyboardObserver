@@ -54,6 +54,8 @@
  
  @param keyboardObserver observer instance
  @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
+ @param duration duration of the animation in seconds
+
  */
 - (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
 
