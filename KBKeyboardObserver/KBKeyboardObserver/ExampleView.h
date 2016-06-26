@@ -13,6 +13,6 @@
 @property (nonatomic, readonly) UITextView *statusTextView;
 @property (nonatomic, readonly) UILabel *bottomLabel;
 
-@property (nonatomic, assign) CGFloat keyboardHeight;
+@property (nonatomic, assign) CGFloat visibleKeyboardHeight;
 
 @end

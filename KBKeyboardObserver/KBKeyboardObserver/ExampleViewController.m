@@ -61,11 +61,13 @@
 - (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillShowToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration
 {
     [self updateStatus:[NSString stringWithFormat:@"Will show to %@ in %f", NSStringFromCGRect(keyboardRect), duration]];
+    CGFloat visibleKeyboardHeight = keyboardObserver.isKeyboardVisible?CGRectGetHeight(keyboardRect):(CGRectGetHeight(keyboardObserver.referenceView.frame)-CGRectGetMinY(keyboardRect));
+
     [UIView animateWithDuration:duration
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.exampleView.keyboardHeight = keyboardRect.size.height;
+                         self.exampleView.visibleKeyboardHeight = visibleKeyboardHeight;
                      }
                      completion:nil];
 }
@@ -82,7 +84,7 @@
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.exampleView.keyboardHeight = 0;
+                         self.exampleView.visibleKeyboardHeight = 0;
                      }
                      completion:nil];
 }
@@ -90,6 +92,14 @@
 - (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidHideToRect:(CGRect)keyboardRect
 {
     [self updateStatus:[NSString stringWithFormat:@"Did hide to %@", NSStringFromCGRect(keyboardRect)]];
+}
+
+-(void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration {
+    
+}
+
+-(void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidChangeFrameToRect:(CGRect)keyboardRect {
+    
 }
 
 - (void) updateStatus:(NSString *)status
