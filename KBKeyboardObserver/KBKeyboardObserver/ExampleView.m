@@ -70,11 +70,11 @@
     return _bottomLabel;
 }
 
-- (void)setKeyboardHeight:(CGFloat)keyboardHeight
+- (void)setVisibleKeyboardHeight:(CGFloat)visibleKeyboardHeight
 {
-    if (_keyboardHeight != keyboardHeight) {
-        _keyboardHeight = keyboardHeight;
-        self.statusTextView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0);
+    if (_visibleKeyboardHeight != visibleKeyboardHeight) {
+        _visibleKeyboardHeight = visibleKeyboardHeight;
+        self.statusTextView.contentInset = UIEdgeInsetsMake(0, 0, visibleKeyboardHeight, 0);
         self.statusTextView.scrollIndicatorInsets = self.statusTextView.contentInset;
         [self layoutBottomLabel];
     }
@@ -103,7 +103,7 @@
     [self.bottomLabel sizeToFit];
     CGRect bottomLabelRect = self.bottomLabel.frame;
     bottomLabelRect.origin.x = self.bounds.size.width - self.bottomLabel.frame.size.width;
-    bottomLabelRect.origin.y = self.bounds.size.height - bottomLabelRect.size.height - self.keyboardHeight;
+    bottomLabelRect.origin.y = self.bounds.size.height - bottomLabelRect.size.height - self.visibleKeyboardHeight;
     self.bottomLabel.frame = bottomLabelRect;
 }
 

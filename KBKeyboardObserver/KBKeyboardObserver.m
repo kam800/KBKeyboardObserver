@@ -133,6 +133,7 @@
     }
     
     _standardKeyboard = NO;
+    
     NSDictionary *info = aNotification.userInfo;
     CGRect kbRectBegin = [info[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     CGRect kbRectEnd = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -156,7 +157,8 @@
     NSTimeInterval duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue] ;
     CGRect viewKbRectEnd = [self.referenceView convertRect:kbRectEnd fromView:nil];
     
-    
+    _keyboardVisible = CGRectContainsRect(self.referenceView.frame, viewKbRectEnd);
+
     if(CGRectContainsRect(self.referenceView.frame, viewKbRectEnd) && !self.standardKeyboard) {
         if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardWillShowToRect:duration:)]) {
             [self.delegate keyboardObserver:self
@@ -171,12 +173,10 @@
             }
     }
     
-    if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardDidChangeFrameToRect:duration:)]) {
-        [self.delegate keyboardObserver:self
-   observedKeyboardDidChangeFrameToRect:viewKbRectEnd
+    if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardWillChangeFrameToRect:duration:)]) {
+        [self.delegate keyboardObserver:self observedKeyboardWillChangeFrameToRect:viewKbRectEnd
                                duration:duration];
     }
-    
 }
 
 - (void)keyboardDidChangeFrame:(NSNotification*)aNotification
@@ -189,7 +189,6 @@
     NSDictionary *info = aNotification.userInfo;
     CGRect kbRectEnd = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect viewKbRectEnd = [self.referenceView convertRect:kbRectEnd fromView:nil];
-    
     _keyboardVisible = CGRectContainsRect(self.referenceView.frame, viewKbRectEnd);
     if(self.keyboardVisible && !self.standardKeyboard) {
         if ([self.delegate respondsToSelector:@selector(keyboardObserver:observedKeyboardDidShowToRect:)]) {

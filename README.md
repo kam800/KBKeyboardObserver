@@ -38,11 +38,11 @@ Implement delegate methods to observe keyboard behaviour (willShow, didShow, wil
 
 ```
 `optional`
+
 ```objc
-- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
 - (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidChangeFrameToRect:(CGRect)keyboardRect;
 ```
-
 ## Examples
 
 __KBKeyboardObserver__ directory contains example project.

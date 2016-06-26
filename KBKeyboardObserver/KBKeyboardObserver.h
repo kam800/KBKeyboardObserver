@@ -55,7 +55,7 @@
  @param keyboardObserver observer instance
  @param keyboardRect CGRect value that identifies the end frame of the keyboard in the reference view coordinates
  */
-- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardDidChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
+- (void)keyboardObserver:(KBKeyboardObserver *)keyboardObserver observedKeyboardWillChangeFrameToRect:(CGRect)keyboardRect duration:(NSTimeInterval)duration;
 
 /**
  Called by the KBKeyboardObserver after the dismissal of the keyboard.
